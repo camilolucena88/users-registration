@@ -4,13 +4,13 @@ import {AxiosResponse} from "axios";
 
 @Injectable()
 export class AddressService {
-    private base = "https://api.mapbox.com/geocoding/v5/mapbox.places/";
+    private base = process.env.MAPBOX_URL
     
     constructor(private readonly httpService: HttpService) {}
     
     find(address: string): Promise<AxiosResponse<any> | void> {
         const formattedAddress = encodeURI(address)
-        const accessToken = "pk.eyJ1IjoiY2FtaWxvbHVjZW5hODgiLCJhIjoiY2ttOW53bzA1MHBwYjJ2cGh5bGlzZTg3NyJ9.dkqgRDzzVGmkKBXg0p-YlA"
+        const accessToken = process.env.MAPBOX_TOKEN
         const url = this.base + formattedAddress + '.json?access_token=' + accessToken
         return this.httpService.get(url).toPromise().then(response => {
             return response.data.features[0]
