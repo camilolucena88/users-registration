@@ -48,7 +48,7 @@ describe('AddressController', () => {
   describe('findAll', () => {
     let address: AddressDto = {"coordinates": [14.48, 35.92083], "type": "Point"}
     it('should get an array of users', async () => {
-      await expect(controller.findOne(15)).resolves.toEqual(address)
+      await expect(controller.findOne(1)).resolves.toEqual(address)
     })
   })
 });

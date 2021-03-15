@@ -82,7 +82,7 @@ describe('UsersController', () => {
         dob: new Date('1988-01-01'),
         address: 'Swieqi',
         description: 'Testing'
-      };       
+      };
       await expect(usersController.update(1, updateUserDto)).resolves.toEqual({
         id: 1,
         ...updateUserDto
