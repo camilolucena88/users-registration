@@ -1,5 +1,4 @@
 import {HttpException, HttpService, HttpStatus, Injectable} from '@nestjs/common';
-import {Observable} from "rxjs";
 import {AxiosResponse} from "axios";
 
 @Injectable()
@@ -13,7 +12,7 @@ export class AddressService {
         const accessToken = process.env.MAPBOX_TOKEN
         const url = this.base + formattedAddress + '.json?access_token=' + accessToken
         return this.httpService.get(url).toPromise().then(response => {
-            return response.data.features[0]
+            return response.data.features[0].geometry
         }).catch(err => {
             throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
         });
